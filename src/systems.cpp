@@ -10,6 +10,7 @@ bool matchloading;
 
 void drive() {
     while (true) {
+        //chassis.tank();
       
     if(normal){
         left = ((pow(master.get_analog(ANALOG_LEFT_Y), 3)) / (pow(128, 2)) + (pow(master.get_analog(ANALOG_RIGHT_X), 3)) / (pow(128, 2)));
@@ -25,6 +26,7 @@ void drive() {
         leftSide.move(-left);
         rightSide.move(-right);
     }
+    
 
 
 

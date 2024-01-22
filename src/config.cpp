@@ -24,14 +24,14 @@ pros::Motor_Group leftSide({frontLeft, midLeft, backLeft});
 pros::IMU inertial(13);
 
 
-pros::Motor fwheel(11, pros::E_MOTOR_GEAR_600, false);
+pros::Motor fwheel(11, pros::E_MOTOR_GEAR_600, true);
 
 
 pros::Motor intake(12, pros::E_MOTOR_GEAR_600, true);
 
 bool fOn = false;
 
-pros::ADIDigitalOut leftWing('B');
+pros::ADIDigitalOut leftWing('E');
 
 pros::ADIDigitalOut rightWing('A');
 
@@ -45,14 +45,14 @@ lemlib::Drivetrain drivetrain(
     12, // 12 inch track width
     lemlib::Omniwheel::NEW_325, // using new 3.25" omnis
     400, // drivetrain rpm is 400
-    2 // chase power is 2. If we had traction wheels, it would have been 8
+    8 // chase power is 2. If we had traction wheels, it would have been 8
 );
 
 // lateral motion controller
 lemlib::ControllerSettings linearController(
-    10, // proportional gain (kP)
+    25, // proportional gain (kP)
     0, // integral gain (kI)
-    3, // derivative gain (kD)
+    35, // derivative gain (kD)
     3, // anti windup
     1, // small error range, in inches
     100, // small error range timeout, in milliseconds
