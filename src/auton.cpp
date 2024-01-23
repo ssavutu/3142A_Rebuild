@@ -12,10 +12,10 @@ void driverSkills(){
     chassis.turnTo(-48, 50, 850, false);
     chassis.moveToPoint(-55, 45, 850, false);
     chassis.turnTo(50, 10, 850);
-    rightWing.set_value(true);
-    pros::delay(32000);
+    leftWing.set_value(true);
+   // pros::delay(320000);
     fOn=false;
-    rightWing.set_value(false);
+    leftWing.set_value(false);
     chassis.moveToPoint(-36, 60, 850);
     chassis.turnTo(0, 60, 850, false);
     /* LEGACY DRIVER SKILLS CODE
@@ -46,10 +46,10 @@ void skills() {
     chassis.turnTo(-48, 50, 850, false);
     chassis.moveToPoint(-55, 45, 850, false);
     chassis.turnTo(50, 10, 850);
-    rightWing.set_value(true);
-    //pros::delay(32000);
+    leftWing.set_value(true);
+    pros::delay(32000);
     fOn=false;
-    rightWing.set_value(false);
+    leftWing.set_value(false);
     chassis.moveToPoint(-36, 60, 850);
     chassis.turnTo(0, 60, 850, false);
     chassis.moveToPoint(48, 60, 1000, false);
@@ -58,9 +58,44 @@ void skills() {
     chassis.moveToPoint(60, 20, 850, false);
     chassis.moveToPoint(55, 50, 850);
     chassis.moveToPoint(60, 20, 850, false);
-    chassis.moveToPoint(55, 50, 850);
-    chassis.turnTo(36,36,850, false);
-    chassis.moveToPoint(24,24, 850, false);
+    chassis.moveToPoint(55, 40, 850);
+    chassis.moveToPoint(60, 20, 850, false);
+    chassis.moveToPoint(55, 40, 850);
+    chassis.turnTo(0,20,850, false);
+    chassis.moveToPoint(10,40, 850, false);
+    chassis.waitUntil(2);
+    leftWing.set_value(true);
+    chassis.waitUntil(15);
+    leftWing.set_value(false);
+    chassis.waitUntilDone();
+    chassis.moveToPoint(10, 0, 850, false);
+    chassis.turnTo(60, 0, 850, false);
+    leftWing.set_value(true);
+    rightWing.set_value(true);
+    chassis.moveToPoint(60, 0, 850, false);
+    chassis.moveToPoint(10, 0, 850);
+    chassis.waitUntil(5);
+    leftWing.set_value(false);
+    rightWing.set_value(false);
+    chassis.waitUntilDone();
+    chassis.turnTo(10, -40, 850, false);
+    chassis.moveToPoint(10, -40, 850, false);
+    leftWing.set_value(true);
+    chassis.turnTo(60, 0, 850, false);
+    rightWing.set_value(true);
+    chassis.moveToPoint(60, 0, 850, false);
+    chassis.moveToPoint(10, 0, 850, false);
+    chassis.waitUntil(5);
+    leftWing.set_value(false);
+    rightWing.set_value(false);
+    chassis.waitUntilDone();
+    //chassis.moveToPoint(48, -72, 850, true);
+    //chassis.turnTo(55, -55, 850, false);
+    //chassis.moveToPoint(60, -20, 850, false);
+
+
+    
+
     
 
 
