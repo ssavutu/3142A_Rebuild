@@ -9,6 +9,7 @@
  */
 void initialize() {
 	chassis.calibrate();
+	//driverSkills();
 }
 
 /**
@@ -42,8 +43,8 @@ void competition_initialize() {}
  */
 void autonomous() {
 	//close();
-	//far();
-	skills();
+	far();
+	//skills();
 }
 
 /**

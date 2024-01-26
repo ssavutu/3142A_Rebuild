@@ -9,23 +9,15 @@ bool matchloading;
 
 
 void drive() {
-    while (true) {
-        //chassis.tank();
+    while (true) {        //chassis.tank();
       
-    if(normal){
+ 
         left = ((pow(master.get_analog(ANALOG_LEFT_Y), 3)) / (pow(128, 2)) + (pow(master.get_analog(ANALOG_RIGHT_X), 3)) / (pow(128, 2)));
         right = ((pow(master.get_analog(ANALOG_LEFT_Y), 3)) / (pow(128, 2)) - (pow(master.get_analog(ANALOG_RIGHT_X), 3)) / (pow(128, 2)));
         leftSide.move(left);
         rightSide.move(right);
 
-    }   
-
-    if(!normal){
-        left = ((pow(master.get_analog(ANALOG_LEFT_Y), 3)) / (pow(128, 2)) - (pow(master.get_analog(ANALOG_RIGHT_X), 3)) / (pow(128, 2)));   
-        right = ((pow(master.get_analog(ANALOG_LEFT_Y), 3)) / (pow(128, 2)) + (pow(master.get_analog(ANALOG_RIGHT_X), 3)) / (pow(128, 2)));
-        leftSide.move(-left);
-        rightSide.move(-right);
-    }
+    
     
 
 
@@ -92,12 +84,8 @@ void subsystems() {
         if (master.get_digital_new_press(DIGITAL_A)){
             matchloading = !matchloading;
         }
-        if (master.get_digital_new_press(DIGITAL_Y)){
+        if (master.get_digital(DIGITAL_B)){
             driverSkills();
-            normal = !normal;
-        }
-        if (master.get_digital_new_press(DIGITAL_X)){
-            normal = !normal;
         }
 
     }

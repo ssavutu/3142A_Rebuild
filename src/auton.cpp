@@ -3,7 +3,6 @@
 ASSET(ram_txt);
 
 void driverSkills(){
-
     pros::Task flywheelAuto(flywheel);
 	flywheelAuto;
     fOn = true;
@@ -11,45 +10,32 @@ void driverSkills(){
     chassis.moveToPoint(-40, 40, 850);
     chassis.turnTo(-48, 50, 850, false);
     chassis.moveToPoint(-55, 45, 850, false);
-    chassis.turnTo(50, 10, 850);
+    chassis.turnTo(50, 0, 850);
     leftWing.set_value(true);
-   // pros::delay(320000);
+    
+    pros::delay(32000);
     fOn=false;
     leftWing.set_value(false);
-    chassis.moveToPoint(-36, 60, 850);
-    chassis.turnTo(0, 60, 850, false);
-    /* LEGACY DRIVER SKILLS CODE
-    pros::Task flywheelAuto(flywheel);
-	flywheelAuto;
-    fOn = true;
-    chassis.setPose(0,0,0);
-    chassis.moveToPoint(0, 3, 1500);
-    chassis.turnTo(10, 3, 1500, true);
-    chassis.moveToPoint(10, 3, 1500);
-    chassis.turnTo(-12, 15, 1500);
-    leftWing.set_value(true);
-    pros::delay(30000);
-    fOn = false;
-    leftWing.set_value(false);
-    */
 
 }
 
 
 
 void skills() {
-    pros::Task flywheelAuto(flywheel);
+    /*pros::Task flywheelAuto(flywheel);
 	flywheelAuto;
     fOn = true;
     chassis.setPose(-40,55,180);
     chassis.moveToPoint(-40, 40, 850);
     chassis.turnTo(-48, 50, 850, false);
     chassis.moveToPoint(-55, 45, 850, false);
-    chassis.turnTo(50, 10, 850);
+    chassis.turnTo(50, 0, 850);
     leftWing.set_value(true);
+    
     pros::delay(32000);
     fOn=false;
     leftWing.set_value(false);
+    */
     chassis.moveToPoint(-36, 60, 850);
     chassis.turnTo(0, 60, 850, false);
     chassis.moveToPoint(48, 60, 1000, false);
@@ -78,20 +64,33 @@ void skills() {
     leftWing.set_value(false);
     rightWing.set_value(false);
     chassis.waitUntilDone();
-    chassis.turnTo(10, -40, 850, false);
-    chassis.moveToPoint(10, -40, 850, false);
+    chassis.turnTo(10, -20, 850, false);
+    chassis.moveToPoint(10, -20, 850, false);
+   // leftWing.set_value(true);
+    chassis.turnTo(60, -10, 850, false);
     leftWing.set_value(true);
-    chassis.turnTo(60, 0, 850, false);
     rightWing.set_value(true);
-    chassis.moveToPoint(60, 0, 850, false);
-    chassis.moveToPoint(10, 0, 850, false);
+    //rightWing.set_value(true);
+    chassis.moveToPoint(60, -10, 850, false);
+
+
+    chassis.moveToPoint(5, 0 ,850);
     chassis.waitUntil(5);
+    //chassis.waitUntil(5);
     leftWing.set_value(false);
     rightWing.set_value(false);
     chassis.waitUntilDone();
-    //chassis.moveToPoint(48, -72, 850, true);
+    chassis.turnTo(50, -110, 850, false);
+    chassis.moveToPoint(45, -130, 850, false);
+    chassis.waitUntil(5);
+    leftWing.set_value(true);
+    rightWing.set_value(true);
+    chassis.waitUntilDone();
+    leftWing.set_value(false);
+    rightWing.set_value(false);
+    chassis.turnTo(55, -90, 850, false);
     //chassis.turnTo(55, -55, 850, false);
-    //chassis.moveToPoint(60, -20, 850, false);
+    chassis.moveToPoint(45, -40, 850, false);
 
 
     
@@ -103,21 +102,19 @@ void skills() {
 
 void close() {
 
-    chassis.setPose(-40, -60, 125);
-    chassis.moveToPoint(-62, -40, 850, false);
-    //chassis.turnTo(-65, -60, 850);
-   //chassis.moveToPoint(-62, -45, 850);
-   chassis.turnTo(-62, 0, 850, false);
-   chassis.moveToPoint(-62, -40, 850, false);
-   chassis.moveToPoint(-62, -50, 850);
-   chassis.moveToPoint(-62, -40, 850, false);
-   chassis.moveToPoint(-60, -50, 850, false);
-   chassis.turnTo(-45, -60, 850, false);
-   chassis.moveToPoint(-45, -60, 850, false);
-   chassis.waitUntil(1);
-   leftWing.set_value(true);
-   chassis.waitUntilDone();
-   leftWing.set_value(false);
+    chassis.setPose(0,0,0);
+    chassis.moveToPoint(-15, 15, 850);
+    chassis.turnTo(0,0, 850, false);
+    leftWing.set_value(true);
+    chassis.moveToPoint(-5, 5, 850, false);
+    chassis.waitUntil(8);
+    leftWing.set_value(false);
+    chassis.waitUntilDone();
+    chassis.turnTo(26, 0, 850, false);
+    chassis.moveToPoint(26, 5, 850, false);
+    rightWing.set_value(true);
+    chassis.turnTo(40, -5, 850, false);
+    
 
   
 
@@ -151,20 +148,28 @@ void close() {
 }
 
 void far() {
-    chassis.setPose(24, -60, -90);
+    chassis.setPose(0, 0, -90);
     intake.move(-127);
-    chassis.moveToPoint(3, -60, 850);
-    chassis.moveToPoint(36, -60, 850, false);
-    rightWing.set_value(true);
-    chassis.turnTo(60, -48, 850, false);
-    chassis.moveToPoint(62, -46, 850, false);
-    chassis.waitUntil(12);
+    chassis.moveToPoint(-5, 0, 850, true);
+    chassis.moveToPoint(24, 0, 850, false);
+    chassis.turnTo(50, 24, 850, false);
     leftWing.set_value(true);
-    chassis.waitUntilDone();
-    pros::delay(200);
+    chassis.moveToPoint(50, 24, 850, false);
+    chassis.turnTo(55, 40, 850, false);
     leftWing.set_value(false);
-    chassis.turnTo(60, -20, 850, false);
-    //chassis.moveToPoint(60, -20, 850, false);
+    chassis.moveToPoint(55, 35, 850, false);
+    chassis.moveToPoint(55, 20, 850, false);
+    chassis.turnTo(55, 40, 850, true);
+    intake.move(127);
+    chassis.moveToPoint(55, 35, 850, true);
+    chassis.moveToPoint(55, 10, 850, false);
+    intake.move(-127);
+    chassis.turnTo(0, 48, 850, true);
+    chassis.moveToPoint(0, 48, 850, true);
+    chassis.moveToPoint(10, 48, 850, false);
+    chassis.turnTo(60, 50, 850, true);
+    intake.move(127);
+
    
    
     
