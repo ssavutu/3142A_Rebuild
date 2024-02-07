@@ -42,9 +42,14 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
+	pros::Task fly1(flywheel);
+	hang.set_value(true);
+	fOn=true;
+
 	//close();
 	far();
 	//skills();
+	fOn=false;
 }
 
 /**
@@ -62,6 +67,7 @@ void autonomous() {
  */
 void opcontrol() {
 	pros::Task drive1(drive);
+	//pros::Task drive1(lemDrive);
 
 	pros::Task fly1(flywheel);
 	

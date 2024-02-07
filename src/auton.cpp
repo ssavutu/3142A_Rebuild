@@ -1,103 +1,106 @@
 #include "main.h"
 
-ASSET(ram_txt);
 
 void driverSkills(){
+    hang.set_value(false);
     pros::Task flywheelAuto(flywheel);
 	flywheelAuto;
     fOn = true;
     chassis.setPose(-40,55,180);
+    //intake.move(-127);
     chassis.moveToPoint(-40, 40, 850);
     chassis.turnTo(-48, 50, 850, false);
     chassis.moveToPoint(-55, 45, 850, false);
-    chassis.turnTo(50, 0, 850);
+    chassis.turnTo(50, 10, 850);
     leftWing.set_value(true);
     
-    pros::delay(32000);
+    pros::delay(22000);
     fOn=false;
+    fwheel.brake();
+    
     leftWing.set_value(false);
 
 }
 
 
+void sabotage(){
+    chassis.setPose(0,0,180);
+    chassis.moveToPoint(5, 24, 850, false); // move up
+    chassis.moveToPoint(5, 50, 850, false); //move into position
+    chassis.waitUntil(15); // wings on
+    leftWing.set_value(true);
+    rightWing.set_value(true);
+    chassis.waitUntilDone();
+    chassis.moveToPoint(30, 50, 850, false); // sab
+    leftWing.set_value(false); // wings off
+    rightWing.set_value(false);
+    chassis.moveToPoint(-15, 15, 850); // move to de-score
+    chassis.turnTo(0,0, 850, false);
+    leftWing.set_value(true); // wing on
+    chassis.moveToPoint(-5, 5, 850, false); // de-score
+    chassis.waitUntil(8); // wing off
+    leftWing.set_value(false);
+    chassis.waitUntilDone();
+    chassis.turnTo(26, 0, 850, false); // turn to elevation bar
+    chassis.moveToPoint(26, 5, 850, false); // move to elevation bar
+    rightWing.set_value(true); // wing in
+    chassis.turnTo(40, -5, 850, false); // touch elevation bar
+}
+
 
 void skills() {
-    /*pros::Task flywheelAuto(flywheel);
-	flywheelAuto;
-    fOn = true;
-    chassis.setPose(-40,55,180);
-    chassis.moveToPoint(-40, 40, 850);
-    chassis.turnTo(-48, 50, 850, false);
-    chassis.moveToPoint(-55, 45, 850, false);
-    chassis.turnTo(50, 0, 850);
-    leftWing.set_value(true);
     
-    pros::delay(32000);
-    fOn=false;
-    leftWing.set_value(false);
-    */
-    chassis.moveToPoint(-36, 60, 850);
-    chassis.turnTo(0, 60, 850, false);
-    chassis.moveToPoint(48, 60, 1000, false);
-    chassis.moveToPoint(55, 50, 850, false);
-    //chassis.turnTo(60, 36, 850, false);
-    chassis.moveToPoint(60, 20, 850, false);
-    chassis.moveToPoint(55, 50, 850);
-    chassis.moveToPoint(60, 20, 850, false);
-    chassis.moveToPoint(55, 40, 850);
-    chassis.moveToPoint(60, 20, 850, false);
-    chassis.moveToPoint(55, 40, 850);
-    chassis.turnTo(0,20,850, false);
-    chassis.moveToPoint(10,40, 850, false);
-    chassis.waitUntil(2);
-    leftWing.set_value(true);
-    chassis.waitUntil(15);
-    leftWing.set_value(false);
+    chassis.moveToPoint(-36, 60, 850); // move into alley
+    chassis.turnTo(0, 65, 850, false); // straighten out
+    chassis.moveToPoint(45, 60, 1000, false); // move to match-loader
+    chassis.waitUntil(28);
+    leftWing.set_value(true); // scrape with wing 
+
     chassis.waitUntilDone();
-    chassis.moveToPoint(10, 0, 850, false);
-    chassis.turnTo(60, 0, 850, false);
+
+    chassis.moveToPoint(55, 40, 850, false); // start curving
+
+    
+    chassis.moveToPoint(60, 20, 850, false); // ram 1
+    chassis.waitUntil(1);
+    leftWing.set_value(false); // wing up before goal
+    //rightWing.set_value(false);
+    chassis.waitUntilDone();
+    chassis.moveToPoint(55, 45, 850); // move to ram again
+    chassis.moveToPoint(60, 20, 850, false); // ram 2
+    chassis.moveToPoint(55, 45, 850); // move to ram
+    chassis.moveToPoint(65, 20, 850, false); // ram 3
+    chassis.moveToPoint(55, 45, 850); // move to ram
+    chassis.turnTo(20,20,850, false); // turn to leave
     leftWing.set_value(true);
     rightWing.set_value(true);
-    chassis.moveToPoint(60, 0, 850, false);
-    chassis.moveToPoint(10, 0, 850);
-    chassis.waitUntil(5);
+    chassis.moveToPoint(20, 20, 850, false); // leave ramming area
+    chassis.turnTo(30, 15, 850, false); // turn to create curve
+    chassis.moveToPoint(70, 0, 850, false); // ram goal
+    chassis.moveToPoint(20, 0, 850, true); // move back
+    chassis.waitUntil(5); // bring up wings after exiting goal
+    leftWing.set_value(false);
+    rightWing.set_value(false);
+    chassis.waitUntilDone(); // wings on again
+    /*
+    leftWing.set_value(true);
+    rightWing.set_value(true);
+    chassis.moveToPoint(20, -20, 850, false, 50); // move further down the field
+    chassis.moveToPoint(60, 0, 850, false); // ram inwards
+    chassis.moveToPoint(20, -10, 850, true); // move back
+    chassis.waitUntil(5); // bring up wings after exiting goal
     leftWing.set_value(false);
     rightWing.set_value(false);
     chassis.waitUntilDone();
-    chassis.turnTo(10, -20, 850, false);
-    chassis.moveToPoint(10, -20, 850, false);
-   // leftWing.set_value(true);
-    chassis.turnTo(60, -10, 850, false);
-    leftWing.set_value(true);
+    chassis.turnTo(30, -24, 850, false); // turn to corner
+    leftWing.set_value(true); // wings on
     rightWing.set_value(true);
-    //rightWing.set_value(true);
-    chassis.moveToPoint(60, -10, 850, false);
-
-
-    chassis.moveToPoint(5, 0 ,850);
-    chassis.waitUntil(5);
-    //chassis.waitUntil(5);
-    leftWing.set_value(false);
+    chassis.moveToPoint(30, -24, 850, false); // move to corner
+    chassis.turnTo(55, -20, 850, false);  // turn to ram
+    leftWing.set_value(false); // wings off
     rightWing.set_value(false);
-    chassis.waitUntilDone();
-    chassis.turnTo(50, -110, 850, false);
-    chassis.moveToPoint(45, -130, 850, false);
-    chassis.waitUntil(5);
-    leftWing.set_value(true);
-    rightWing.set_value(true);
-    chassis.waitUntilDone();
-    leftWing.set_value(false);
-    rightWing.set_value(false);
-    chassis.turnTo(55, -90, 850, false);
-    //chassis.turnTo(55, -55, 850, false);
-    chassis.moveToPoint(45, -40, 850, false);
-
-
-    
-
-    
-
-
+    chassis.moveToPoint(55, -20, 850, false); // ram
+*/
 }
 
 void close() {
@@ -114,125 +117,39 @@ void close() {
     chassis.moveToPoint(26, 5, 850, false);
     rightWing.set_value(true);
     chassis.turnTo(40, -5, 850, false);
-    
-
-  
-
-   
-    
-    
-    //chassis.moveToPoint(-36, )
-    /* LEGACY CLOSE CODE
-    chassis.setPose(0,0,-45);
-    intake.move(-127);
-    chassis.moveToPoint(-25, 20, 1500);
-    chassis.turnTo(-25, 40, 1500);
-    intake.move(127);
-    chassis.moveToPoint(-25, 10, 1500);
-    chassis.turnTo(-25, 40, 1500, true);
-    chassis.moveToPoint(-25, 30, 1500);
-    chassis.moveToPoint(-24, 8, 1500);
-    leftWing.set_value(true);
-    chassis.turnTo(0,-15, 1500, true); 
-    chassis.turnTo(0, -12, 1500, true);
-    chassis.moveToPoint(-12, -8, 1500);
-    chassis.turnTo(0,0, 1500, true);
-    leftWing.set_value(false); 
-    chassis.moveToPoint(0, -20, 1500);
-    chassis.turnTo(24, -20, 1500, true);
-    chassis.moveToPoint(32,-20,1500);
-    rightWing.set_value(true);
-    chassis.turnTo(26, -18, 1500);
-    */
 
 }
 
 void far() {
-    chassis.setPose(0, 0, -90);
+    
+    chassis.setPose(-4, 0, -90);
     intake.move(-127);
-    chassis.moveToPoint(-5, 0, 850, true);
+    chassis.moveToPoint(-6, 0, 850, true);
     chassis.moveToPoint(24, 0, 850, false);
-    chassis.turnTo(50, 24, 850, false);
+    chassis.turnTo(55, 24, 850, false);
     leftWing.set_value(true);
-    chassis.moveToPoint(50, 24, 850, false);
-    chassis.turnTo(55, 40, 850, false);
+    chassis.moveToPoint(55, 24, 850, false);
+    chassis.waitUntil(16);
     leftWing.set_value(false);
+    chassis.turnTo(50, 40, 850, false);
+    chassis.turnTo(55, 40, 850, false);
     chassis.moveToPoint(55, 35, 850, false);
-    chassis.moveToPoint(55, 20, 850, false);
+    chassis.moveToPoint(55, 10, 850, false);
     chassis.turnTo(55, 40, 850, true);
     intake.move(127);
-    chassis.moveToPoint(55, 35, 850, true);
-    chassis.moveToPoint(55, 10, 850, false);
-    intake.move(-127);
-    chassis.turnTo(0, 48, 850, true);
-    chassis.moveToPoint(0, 48, 850, true);
-    chassis.moveToPoint(10, 48, 850, false);
-    chassis.turnTo(60, 50, 850, true);
-    intake.move(127);
-
-   
-   
-    
+    chassis.moveToPoint(55, 10, 850, true);
     /*
-    intake.move(127);
-    chassis.moveToPoint(55, -20, 850);
-    chassis.moveToPoint(55, -35, 850);
-    chassis.turnTo(55, 400, 850, true);
-    chassis.moveToPoint(55, -20, 850);
-    chassis.moveToPoint(55, -40, 850);
-    chassis.turnTo(0, -24, 850);
-    chassis.moveToPose(0, -24, -45, 850);
-    chassis.moveToPoint(24, -24, 850);
-    chassis.turnTo(48, -12, 850);
-    intake.move(127);
-    chassis.turnTo(0, 0, 850);
-    intake.move(-127);
-    chassis.moveToPose(0, 0, 45, 850);
-    chassis.turnTo(500, 0, 850, true);
-    leftWing.set_value(true);
-    rightWing.set_value(true);
-    chassis.moveToPoint(48, 0, 850);
-    chassis.moveToPose(24, -12, 90, 850);
-    leftWing.set_value(false);
-    rightWing.set_value(false);
-    intake.move(127);
-    chassis.moveToPoint(48, -12, 850);
-    chassis.moveToPoint(24, -12, 850);
-
+    chassis.turnTo(65, 35, 850, false);
+    chassis.moveToPoint(55, 35, 850, false);
+    chassis.moveToPoint(55, 10, 850, false);
     */
-
-    /* LEGACY FAR CODE
-    chassis.setPose(24,0,-90);
-    leftWing.set_value(true);
-    chassis.moveToPoint(40, 12, 1500);
-    pros::delay(200);
-    chassis.turnTo(55, 20, 1500, true);
-    leftWing.set_value(false); 
-    chassis.moveToPoint(63, 15, 1500);
-    chassis.turnTo(63, 30, 1500, true);
-    chassis.moveToPoint(63, 30, 1500); 
-    chassis.moveToPoint(63, 15, 1500);
-    chassis.moveToPoint(63, 10, 1500);
-    intake.move(-127); 
-    chassis.turnTo(30, 25, 1500);
-    chassis.moveToPoint(30, 25, 1500);
-    chassis.moveToPoint(0, 25, 1500);
-    chassis.moveToPoint(10, 25, 1500);
-    chassis.turnTo(40, 40, 1500);
-    intake.move(127);
+    /*
+    chassis.turnTo(0, 48, 850, true);
     intake.move(-127);
-    chassis.moveToPoint(15, 40, 1500);
-    chassis.turnTo(15, 51, 1500);
-    chassis.moveToPoint(15,51,1500);
-    chassis.turnTo(40,51,1500,true);
-    leftWing.set_value(true);
-    rightWing.set_value(true);
-    chassis.moveToPoint(40, 51, 1500);
-    chassis.moveToPoint(35, 48, 1500);
-    chassis.turnTo(40, 48, 1500);
-    intake.move(127);
-    chassis.moveToPoint(30, 48, 1500);
-    chassis.moveToPoint(10, 48, 1500);
+    chassis.moveToPoint(0, 30, 850, true);\
     */
+    //chassis.turnTo(60, 50, 850, true);
+    //intake.move(127);
+
    
 }

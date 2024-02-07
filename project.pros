@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "Abomination",
+    "project_name": "Far",
     "target": "v5",
     "templates": {
       "LemLib": {
@@ -350,7 +350,7 @@
       "after": "none",
       "description": "3142A Code",
       "icon": "pros",
-      "slot": 1
+      "slot": 2
     }
   }
 }

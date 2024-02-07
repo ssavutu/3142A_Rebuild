@@ -27,7 +27,7 @@ pros::IMU inertial(13);
 pros::Motor fwheel(11, pros::E_MOTOR_GEAR_600, true);
 
 
-pros::Motor intake(12, pros::E_MOTOR_GEAR_600, true);
+pros::Motor intake(12, pros::E_MOTOR_GEAR_600, false);
 
 bool fOn = false;
 

@@ -9,7 +9,8 @@ bool matchloading;
 
 
 void drive() {
-    while (true) {        //chassis.tank();
+    while (true) {        
+        //chassis.tank(left, right, 10);
       
  
         left = ((pow(master.get_analog(ANALOG_LEFT_Y), 3)) / (pow(128, 2)) + (pow(master.get_analog(ANALOG_RIGHT_X), 3)) / (pow(128, 2)));
@@ -28,14 +29,22 @@ void drive() {
 }
 
 void flywheel(){
+    
     while(true){
         if(fOn){
-            if(fwheel.get_actual_velocity() < 550){
+        
+
+           // master.clear();
+            //master.set_text(0, 0, speed);
+            int setpoint = 500;
+            
+            if(fwheel.get_actual_velocity() < setpoint){
                 fwheel.move(127);
             }
-            if(fwheel.get_actual_velocity() >= 550){
+            if(fwheel.get_actual_velocity() >= setpoint){
                 fwheel.move(100);
             }
+            
         }
         else{
             fwheel.brake();
@@ -73,10 +82,10 @@ void subsystems() {
             rightWing.set_value(false);
         }
         if (master.get_digital(DIGITAL_UP)){
-            hang.set_value(true);
+            hang.set_value(false);
         }
         if (master.get_digital(DIGITAL_DOWN)){
-            hang.set_value(false);
+            hang.set_value(true);
         }
         if (master.get_digital_new_press(DIGITAL_L1)){
             fOn = !fOn;
